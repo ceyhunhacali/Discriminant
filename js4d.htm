@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <style>
+            input { width: 30px; text-align: right;}
+        </style>
+    </head>
+    <body>
+        <input type="number" id="a"/> X<sup>2</sup> +
+        <input type="number" id="b" /> X +
+        <input type="number" id="c" /> = 0
+        <hr />
+        <button onclick="hellEt()">Köklərini tap</button>
+        <div id="hell"></div>
+        
+        <script>
+            const a = document.getElementById("a");
+            const b = document.getElementById("b");
+            const c = document.getElementById("c");
+            const hell = document.getElementById("hell");
+            let aval, bval, cval;
+
+            function hellEt() {
+                aval = (a.value == '') ? 1 : +a.value;
+                bval = (b.value == '') ? 1 : +b.value;
+                cval = (c.value == '') ? 1 : +c.value;
+
+                const d = diskr()
+                if(isNaN(d)) {
+                    hell.innerHTML = "Rasional kökü yoxdur";
+                } else if (d === 0) {
+                    let x = - bval / (2 * aval);
+                    hell.innerHTML = "Tənliyin bir kökü var: <br /> X = " + Math.round(x);
+                } else {
+                    let x1 = (- bval + d) / (2 * aval)
+                    let x2 = (- bval - d) / (2 * aval)
+                    hell.innerHTML = `Tənliyin kökLəri: 
+                        <br /> X<sub>1</sub> = ${Math.round(x1)} 
+                        <br /> X<sub>2</sub> = ${Math.round(x2)}`
+                }
+            }
+
+            function diskr() {
+                const ds = bval**2 - 4 * aval * cval; 
+                return Math.sqrt(ds);
+            }
+        </script>
+    </body>
+</html>
